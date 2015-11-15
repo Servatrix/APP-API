@@ -88,10 +88,10 @@
     * @param int $duration The duration of the serial in seconds
     * @param string $custom A custom field you can store tracking data in (Invoice ID?)
     */
-    public function serialCreate($userToken, $productId, $points, $duration, $custom)
+    public function serialCreate($userToken, $productId, $points, $duration, $custom = "")
     {
         $url = sprintf('%s?action=serial_create&app=%s&token=%s&product=%s&points=%s&duration=%s&custom=%s', 
-            $this->endpointUrl, $this->appKey, $userToken, $productId, $points, $duration, urldecode($custom));
+            $this->endpointUrl, $this->appKey, $userToken, $productId, $points, $duration, urlencode($custom));
         $response = json_decode($this->get($url));
         if($response->error) throw new Exception($response->error_message);
         return $response->response;
