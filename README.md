@@ -25,3 +25,17 @@ After the user succesfully connected your service to his Servatrix account we wi
  3. secret - your application callback secret, you should always check if the provided secret is correct 
 
 
+**Getting your users programs**
+
+After getting your users token you will most likely want to list the users programs.
+To do that call listPrograms with the users token.
+
+    $list = $servatrixAA->listPrograms($userToken);
+
+
+**Creating a new serial**
+
+To create a new serial call serialCreate with the user token, product id, the points you want to add to the license and the license duration in seconds. 
+You can also store a custom string that can be used to identify the serial within Servatrix later, in example an invoice id or transaction id. 
+
+    $newSerial = $servatrixAA->serialCreate($userToken, $productId, $points, $duration, $custom);
